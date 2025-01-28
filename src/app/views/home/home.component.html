@@ -1,0 +1,81 @@
+<header class="header">
+    <img class="logo" src="./../../../assets/images/logo-bank.png" alt="logo-bank">
+    <span><img class="usuario" src="./../../../assets/icons/usuario.png" alt="user"> Hola, David</span> 
+</header>
+<app-carrousel></app-carrousel>
+
+<div class="botonera">
+    <button type="button" class="botonera-button" (click)="goToView('history')">
+        <img src="./../../../assets/icons/ico-btn.png" alt="icon-history"> 
+        <span>Mis transacciones</span>
+    </button>
+    <button type="button" class="botonera-button" (click)="goToView('sugesstions')" style="margin-left: 4vw;">
+        <img src="./../../../assets/icons/ico-btn2.png" alt="icon-sugesstions"> 
+        <span>Mis recomendaciones</span>
+    </button>
+</div>
+
+<ng-container *ngIf="viewHistory">
+    <section class="container-history">
+            <div class="filter-container">
+                <h2>Historial de Pagos</h2>
+                <form [formGroup]="filterForm" class="filter-form">
+                <label>
+                    Período:
+                    <select formControlName="period" class="filter-select">
+                    <option value="">Todos</option>
+                    <option *ngFor="let period of periods" [value]="period">{{ period }}</option>
+                    </select>
+                </label>
+            
+                <label>
+                    Estado:
+                    <select formControlName="status" class="filter-select">
+                    <option value="">Todos</option>
+                    <option *ngFor="let status of statuses" [value]="status">{{ status }}</option>
+                    </select>
+                </label>
+            
+                <label>
+                    Monto mínimo:
+                    <input type="number" formControlName="amount" class="filter-input" placeholder="Monto mínimo">
+                </label>
+                </form>
+            </div>
+            
+            <div class="table-container">
+                <table>
+                <thead>
+                    <tr>
+                    <th></th>
+                    <th>Fecha Pago</th>
+                    <th>Fecha Aprobación</th>
+                    <th>Monto</th>
+                    <th>Descripción</th>
+                    <th>Documento</th>
+                    <th>Estado</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let item of filteredData; let i = index">
+                    <td style="color: #B9B6B6; font-weight: 500;">{{ i + 1 }}</td>
+                    <td>{{ item.date }}</td>
+                    <td>{{ item.approvalDate || '-' }}</td>
+                    <td>{{ item.amount | currency:'USD' }}</td>
+                    <td>{{ item.description }}</td>
+                    <td>{{ item.document }}</td>
+                    <td>
+                        <span [ngClass]="getStatusClass(item.status)">
+                        {{ item.status }}
+                        </span>
+                    </td>
+                    </tr>
+                </tbody>
+                </table>
+            </div>
+    </section>
+</ng-container>
+
+<footer class="footer">
+    <span>© 2025 BankSmart</span>
+</footer>

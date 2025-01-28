@@ -1,0 +1,27 @@
+<div class="carousel-container">
+        <div class="carousel-slide" [style.transform]="'translateX(' + (-currentIndex * 100) + '%)'">
+        <div class="carousel-item">
+            <img src="./../../../assets/images/ahorro.jpg" alt="Slide 1">
+            <div class="carousel-text">
+                Juntos cuidamos tu salud <br> financiera para darle vida a tus <br> proyectos <br>
+                <span style="font-size: 16px; font-weight: 400;">Descubre soluciones que te ayudaran a planificar ahorrando</span>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="./../../../assets/images/familia.jpg" alt="Slide 2">
+            <div class="carousel-text">
+                Juntos cuidamos tu economia <br> familiar para proyectarte<br> hacia el futuro <br>
+                <span style="font-size: 16px; font-weight: 400;">Descubre soluciones que te ayudaran a planificar ahorrando</span>
+            </div>
+        </div>
+        <div class="carousel-item">
+            <img src="./../../../assets/images/viaje.jpg" alt="Slide 3">
+            <div class="carousel-text">
+                Te ayudamos a dar vida <br> a tus sueños <br>
+                <span style="font-size: 16px; font-weight: 400;">Descubre productos financieros unicos</span>
+            </div>
+        </div>
+        </div>
+    <button class="prev" (click)="prevSlide()">&#10094;</button>
+    <button class="next" (click)="nextSlide()">&#10095;</button>
+</div>
